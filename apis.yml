@@ -8,10 +8,10 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Connected Cars
   - Automotive
-  - Vehicle Data
+  - Connected Cars
   - IoT
+  - Vehicle Data
 url: >-
   https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -27,9 +27,9 @@ apis:
     humanURL: https://high-mobility.com/developers/
     baseURL: https://sandbox.high-mobility.com/api/v2
     tags:
+      - Automotive
       - Connected Cars
       - Vehicle Data
-      - Automotive
     properties:
       - type: Documentation
         url: https://high-mobility.com/learn/documentation/
