@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: High Mobility Vehicle API
+  description: >-
+    The High Mobility Vehicle API provides standardized access to connected
+    car data across more than 500 models from major automotive OEMs. Endpoints
+    return real-time vehicle telemetry covering location, doors, charging,
+    diagnostics, climate, trips, and other capabilities. Authentication is
+    handled with OAuth 2.0 against the High Mobility platform.
+  version: '1.0'
+  contact:
+    name: High Mobility Developer Support
+    url: https://docs.high-mobility.com/
+externalDocs:
+  description: High Mobility API Reference
+  url: https://docs.high-mobility.com/api-references/readme.md
+servers:
+  - url: https://api.high-mobility.com
+    description: Production
+  - url: https://sandbox.api.high-mobility.com
+    description: Sandbox
+tags:
+  - name: Authentication
+    description: OAuth 2.0 token issuance for the High Mobility platform.
+  - name: Vehicle Data
+    description: Retrieve real-time vehicle telemetry organized by capability category.
+  - name: Vehicle Eligibility
+    description: Check brand and capability eligibility for a vehicle.
+  - name: Fleet Clearance
+    description: Manage fleet vehicle clearance status and onboarding.
+security:
+  - oauth2: [vehicle:data]
+paths:
+  /v1/access_token:
+    post:
+      operationId: createAccessToken
+      summary: Create OAuth 2.0 access token
+      description: >-
+        Exchanges client credentials or an authorization code for an access
+        token used to call the Vehicle Data and Fleet Management APIs.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - client_id
+              properties:
+                grant_type:
+                  type: string
+                  enum: [client_credentials, authorization_code, refresh_token]
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                code:
+                  type: string
+                refresh_token:
+                  type: string
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '400':
+          description: Invalid request
+        '401':
+          description: Invalid client credentials
+  /v1/vehicle-data/autoapi-13/{vin}:
+    get:
+      operationId: getVehicleData
+      summary: Get vehicle data by VIN
+      description: >-
+        Retrieves the latest available connected vehicle data payload for a
+        given VIN. Response covers all capabilities the vehicle and its
+        clearance grant access to, such as doors, charging, diagnostics,
+        climate, trips, and location.
+      tags:
+        - Vehicle Data
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          description: Vehicle Identification Number.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vehicle data payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleData'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Insufficient scope or clearance
+        '404':
+          description: Vehicle not found
+        '429':
+          description: Too many requests
+  /v1/eligibility/{vin}:
+    get:
+      operationId: getVehicleEligibility
+      summary: Get vehicle eligibility
+      description: >-
+        Returns brand and capability eligibility metadata for the requested
+        vehicle, including supported data points and required clearance flow.
+      tags:
+        - Vehicle Eligibility
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Eligibility result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eligibility'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Vehicle not found
+  /v1/fleet/vehicles:
+    get:
+      operationId: listFleetVehicles
+      summary: List fleet vehicles
+      description: >-
+        Lists vehicles registered to the calling fleet account along with
+        their clearance status.
+      tags:
+        - Fleet Clearance
+      responses:
+        '200':
+          description: List of fleet vehicles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FleetVehicle'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: addFleetVehicle
+      summary: Register vehicle to fleet
+      description: >-
+        Adds a vehicle to the fleet and initiates the clearance process for
+        the configured OEM.
+      tags:
+        - Fleet Clearance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FleetVehicleRequest'
+      responses:
+        '201':
+          description: Vehicle registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FleetVehicle'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/fleet/vehicles/{vin}:
+    get:
+      operationId: getFleetVehicle
+      summary: Get fleet vehicle
+      description: >-
+        Returns the clearance status and metadata for a single fleet vehicle.
+      tags:
+        - Fleet Clearance
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fleet vehicle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FleetVehicle'
+        '404':
+          description: Not found
+    delete:
+      operationId: removeFleetVehicle
+      summary: Remove fleet vehicle
+      description: Removes a vehicle from the fleet and revokes clearance.
+      tags:
+        - Fleet Clearance
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Removed
+        '404':
+          description: Not found
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+        authorizationCode:
+          authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    Eligibility:
+      type: object
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        eligible:
+          type: boolean
+        capabilities:
+          type: array
+          items:
+            type: string
+        clearance_required:
+          type: boolean
+    FleetVehicle:
+      type: object
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        license_plate:
+          type: string
+        clearance_status:
+          type: string
+          enum: [pending, approved, revoked, error]
+        created_at:
+          type: string
+          format: date-time
+    FleetVehicleRequest:
+      type: object
+      required:
+        - vin
+        - brand
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        license_plate:
+          type: string
+    VehicleData:
+      type: object
+      description: >-
+        Aggregated vehicle data response. Includes any capability sections the
+        vehicle and clearance permit; example fields shown.
+      properties:
+        vin:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        doors:
+          $ref: '#/components/schemas/Doors'
+        charging:
+          $ref: '#/components/schemas/Charging'
+        diagnostics:
+          $ref: '#/components/schemas/Diagnostics'
+        vehicle_location:
+          $ref: '#/components/schemas/VehicleLocation'
+    Doors:
+      type: object
+      properties:
+        locks:
+          type: array
+          items:
+            type: object
+            properties:
+              location:
+                type: string
+                enum: [front_left, front_right, rear_left, rear_right]
+              lock:
+                type: string
+                enum: [locked, unlocked]
+              position:
+                type: string
+                enum: [open, closed]
+    Charging:
+      type: object
+      properties:
+        battery_level:
+          type: integer
+        estimated_range:
+          type: integer
+        charging_state:
+          type: string
+          enum: [disconnected, plugged_in, charging, completed]
+        charge_limit:
+          type: integer
+    Diagnostics:
+      type: object
+      properties:
+        mileage:
+          type: integer
+        speed:
+          type: integer
+        fuel_level:
+          type: integer
+        engine_rpm:
+          type: integer
+        engine_oil_temperature:
+          type: number
+    VehicleLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float

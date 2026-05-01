@@ -15,7 +15,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-16'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: high-mobility:high-mobility-api
@@ -25,16 +25,22 @@ apis:
       car data including vehicle telemetry, diagnostics, location, fuel
       levels, door state, and other vehicle capabilities.
     humanURL: https://high-mobility.com/developers/
-    baseURL: https://sandbox.high-mobility.com/api/v2
+    baseURL: https://api.high-mobility.com
     tags:
       - Automotive
       - Connected Cars
       - Vehicle Data
     properties:
       - type: Documentation
-        url: https://high-mobility.com/learn/documentation/
+        url: https://docs.high-mobility.com/
       - type: Getting Started
-        url: https://high-mobility.com/learn/tutorials/
+        url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
+      - type: Authentication
+        url: https://docs.high-mobility.com/docs/oauth-2.0.md
+      - type: OpenAPI
+        url: openapi/high-mobility-openapi.yml
+      - type: GitHubRepository
+        url: https://github.com/highmobility/open-api-specifications
 common:
   - type: Portal
     url: https://high-mobility.com/developers/

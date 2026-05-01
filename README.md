@@ -16,7 +16,7 @@ High Mobility provides a connected car API platform that enables developers to b
 ## Timestamps
 
 - **Created:** 2026-03-16 
-- **Modified:** 2026-03-16 
+- **Modified:** 2026-04-28 
 
 ## APIs
 
@@ -32,8 +32,11 @@ The High Mobility Vehicle API provides access to real-time connected car data in
 
 #### Properties
 
-- [Documentation](https://high-mobility.com/learn/documentation/)
-- [Getting Started](https://high-mobility.com/learn/tutorials/)
+- [Documentation](https://docs.high-mobility.com/)
+- [Getting Started](https://docs.high-mobility.com/docs/getting-started/quickstart.md)
+- [Authentication](https://docs.high-mobility.com/docs/oauth-2.0.md)
+- [OpenAPI](openapi/high-mobility-openapi.yml)
+- [GitHubRepository](https://github.com/highmobility/open-api-specifications)
 
 ## Common Properties
 
