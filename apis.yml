@@ -33,7 +33,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.high-mobility.com/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
       - type: Authentication
         url: https://docs.high-mobility.com/docs/oauth-2.0.md
@@ -48,9 +48,9 @@ common:
     url: https://high-mobility.com/
   - type: Documentation
     url: https://high-mobility.com/learn/documentation/
-  - type: Sign Up
+  - type: SignUp
     url: https://high-mobility.com/developers/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/highmobility
 maintainers:
   - FN: Kin Lane
