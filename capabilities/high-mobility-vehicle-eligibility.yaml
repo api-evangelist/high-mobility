@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: High Mobility Vehicle API — Vehicle Eligibility
+  description: 'High Mobility Vehicle API — Vehicle Eligibility. 1 operations. Lead operation: Get vehicle eligibility. Self-contained
+    Naftiko capability covering one High Mobility business surface.'
+  tags:
+  - High Mobility
+  - Vehicle Eligibility
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HIGH_MOBILITY_API_KEY: HIGH_MOBILITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: high-mobility-vehicle-eligibility
+    baseUri: https://api.high-mobility.com
+    description: High Mobility Vehicle API — Vehicle Eligibility business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-eligibility-vin
+      path: /v1/eligibility/{vin}
+      operations:
+      - name: getvehicleeligibility
+        method: GET
+        description: Get vehicle eligibility
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vin
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.HIGH_MOBILITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: high-mobility-vehicle-eligibility-rest
+    port: 8080
+    description: REST adapter for High Mobility Vehicle API — Vehicle Eligibility. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/eligibility/{vin}
+      name: v1-eligibility-vin
+      description: REST surface for v1-eligibility-vin.
+      operations:
+      - method: GET
+        name: getvehicleeligibility
+        description: Get vehicle eligibility
+        call: high-mobility-vehicle-eligibility.getvehicleeligibility
+        with:
+          vin: rest.vin
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: high-mobility-vehicle-eligibility-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for High Mobility Vehicle API — Vehicle Eligibility. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-vehicle-eligibility
+      description: Get vehicle eligibility
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: high-mobility-vehicle-eligibility.getvehicleeligibility
+      with:
+        vin: tools.vin
+      outputParameters:
+      - type: object
+        mapping: $.

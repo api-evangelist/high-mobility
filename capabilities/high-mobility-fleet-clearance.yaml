@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: High Mobility Vehicle API — Fleet Clearance
+  description: 'High Mobility Vehicle API — Fleet Clearance. 4 operations. Lead operation: List fleet vehicles. Self-contained
+    Naftiko capability covering one High Mobility business surface.'
+  tags:
+  - High Mobility
+  - Fleet Clearance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HIGH_MOBILITY_API_KEY: HIGH_MOBILITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: high-mobility-fleet-clearance
+    baseUri: https://api.high-mobility.com
+    description: High Mobility Vehicle API — Fleet Clearance business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-fleet-vehicles
+      path: /v1/fleet/vehicles
+      operations:
+      - name: listfleetvehicles
+        method: GET
+        description: List fleet vehicles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addfleetvehicle
+        method: POST
+        description: Register vehicle to fleet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-fleet-vehicles-vin
+      path: /v1/fleet/vehicles/{vin}
+      operations:
+      - name: getfleetvehicle
+        method: GET
+        description: Get fleet vehicle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vin
+          in: path
+          type: string
+          required: true
+      - name: removefleetvehicle
+        method: DELETE
+        description: Remove fleet vehicle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vin
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.HIGH_MOBILITY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: high-mobility-fleet-clearance-rest
+    port: 8080
+    description: REST adapter for High Mobility Vehicle API — Fleet Clearance. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/fleet/vehicles
+      name: v1-fleet-vehicles
+      description: REST surface for v1-fleet-vehicles.
+      operations:
+      - method: GET
+        name: listfleetvehicles
+        description: List fleet vehicles
+        call: high-mobility-fleet-clearance.listfleetvehicles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addfleetvehicle
+        description: Register vehicle to fleet
+        call: high-mobility-fleet-clearance.addfleetvehicle
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/fleet/vehicles/{vin}
+      name: v1-fleet-vehicles-vin
+      description: REST surface for v1-fleet-vehicles-vin.
+      operations:
+      - method: GET
+        name: getfleetvehicle
+        description: Get fleet vehicle
+        call: high-mobility-fleet-clearance.getfleetvehicle
+        with:
+          vin: rest.vin
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removefleetvehicle
+        description: Remove fleet vehicle
+        call: high-mobility-fleet-clearance.removefleetvehicle
+        with:
+          vin: rest.vin
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: high-mobility-fleet-clearance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for High Mobility Vehicle API — Fleet Clearance. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-fleet-vehicles
+      description: List fleet vehicles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: high-mobility-fleet-clearance.listfleetvehicles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-vehicle-fleet
+      description: Register vehicle to fleet
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: high-mobility-fleet-clearance.addfleetvehicle
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fleet-vehicle
+      description: Get fleet vehicle
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: high-mobility-fleet-clearance.getfleetvehicle
+      with:
+        vin: tools.vin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-fleet-vehicle
+      description: Remove fleet vehicle
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: high-mobility-fleet-clearance.removefleetvehicle
+      with:
+        vin: tools.vin
+      outputParameters:
+      - type: object
+        mapping: $.
