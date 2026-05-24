@@ -57,6 +57,8 @@ common:
   url: https://high-mobility.com/developers/
 - type: GitHubOrganization
   url: https://github.com/highmobility
+- type: LLMsTxt
+  url: https://docs.high-mobility.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
