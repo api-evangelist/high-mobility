@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "High Mobility Vehicle API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.high-mobility.com/v1/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create OAuth 2.0 access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.high-mobility.com/v1/access_token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchanges client credentials or an authorization code for an access token used to call the Vehicle Data and Fleet Management APIs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vehicle Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vehicle data by VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/vehicle-data/autoapi-13/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path",
+                "description": "Vehicle Identification Number."
+              }
+            ]
+          },
+          "docs": "Retrieves the latest available connected vehicle data payload for a given VIN. Response covers all capabilities the vehicle and its clearance grant access to, such as doors, charging, diagnostics, climate, trips, and location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vehicle Eligibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vehicle eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/eligibility/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns brand and capability eligibility metadata for the requested vehicle, including supported data points and required clearance flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fleet Clearance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List fleet vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles"
+          },
+          "docs": "Lists vehicles registered to the calling fleet account along with their clearance status."
+        },
+        {
+          "info": {
+            "name": "Register vehicle to fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a vehicle to the fleet and initiates the clearance process for the configured OEM."
+        },
+        {
+          "info": {
+            "name": "Get fleet vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the clearance status and metadata for a single fleet vehicle."
+        },
+        {
+          "info": {
+            "name": "Remove fleet vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a vehicle from the fleet and revokes clearance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
