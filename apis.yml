@@ -47,11 +47,11 @@ common:
     url: https://high-mobility.com/
   - type: Documentation
     url: https://high-mobility.com/learn/documentation/
-  - type: SignUp
+  - type: Signup
     url: https://high-mobility.com/developers/
   - type: GitHubOrganization
     url: https://github.com/highmobility
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.high-mobility.com/llms.txt
 maintainers:
   - FN: Kin Lane
