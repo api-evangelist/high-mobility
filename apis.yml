@@ -39,6 +39,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/highmobility/open-api-specifications
 common:
+  - type: OAuthScopes
+    url: scopes/high-mobility-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/high-mobility
   - type: Portal
@@ -53,6 +55,8 @@ common:
     url: https://github.com/highmobility
   - type: LlmsText
     url: https://docs.high-mobility.com/llms.txt
+  - url: https://www.high-mobility.com/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/high-mobility-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/high-mobility-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.high-mobility.com/v1/access_token
+  - flow: authorizationCode
+    authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+    tokenUrl: https://api.high-mobility.com/v1/access_token
+scopes:
+- scope: vehicle:data
+  description: Read connected vehicle data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/high-mobility-openapi.yml
