@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: High Mobility Vehicle Authentication Vehicle Eligibility API
+  description: The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.
+  version: '1.0'
+  contact:
+    name: High Mobility Developer Support
+    url: https://docs.high-mobility.com/
+servers:
+- url: https://api.high-mobility.com
+  description: Production
+- url: https://sandbox.api.high-mobility.com
+  description: Sandbox
+security:
+- oauth2:
+  - vehicle:data
+tags:
+- name: Vehicle Eligibility
+  description: Check brand and capability eligibility for a vehicle.
+paths:
+  /v1/eligibility/{vin}:
+    get:
+      operationId: getVehicleEligibility
+      summary: Get vehicle eligibility
+      description: Returns brand and capability eligibility metadata for the requested vehicle, including supported data points and required clearance flow.
+      tags:
+      - Vehicle Eligibility
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Eligibility result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eligibility'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Vehicle not found
+components:
+  schemas:
+    Eligibility:
+      type: object
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        eligible:
+          type: boolean
+        capabilities:
+          type: array
+          items:
+            type: string
+        clearance_required:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+        authorizationCode:
+          authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+externalDocs:
+  description: High Mobility API Reference
+  url: https://docs.high-mobility.com/api-references/readme.md

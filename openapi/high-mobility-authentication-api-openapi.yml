@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: High Mobility Vehicle Authentication API
+  description: The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.
+  version: '1.0'
+  contact:
+    name: High Mobility Developer Support
+    url: https://docs.high-mobility.com/
+servers:
+- url: https://api.high-mobility.com
+  description: Production
+- url: https://sandbox.api.high-mobility.com
+  description: Sandbox
+security:
+- oauth2:
+  - vehicle:data
+tags:
+- name: Authentication
+  description: OAuth 2.0 token issuance for the High Mobility platform.
+paths:
+  /v1/access_token:
+    post:
+      operationId: createAccessToken
+      summary: Create OAuth 2.0 access token
+      description: Exchanges client credentials or an authorization code for an access token used to call the Vehicle Data and Fleet Management APIs.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  - authorization_code
+                  - refresh_token
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                code:
+                  type: string
+                refresh_token:
+                  type: string
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '400':
+          description: Invalid request
+        '401':
+          description: Invalid client credentials
+components:
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+        authorizationCode:
+          authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+externalDocs:
+  description: High Mobility API Reference
+  url: https://docs.high-mobility.com/api-references/readme.md

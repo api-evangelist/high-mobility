@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: High Mobility Vehicle Authentication Fleet Clearance API
+  description: The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.
+  version: '1.0'
+  contact:
+    name: High Mobility Developer Support
+    url: https://docs.high-mobility.com/
+servers:
+- url: https://api.high-mobility.com
+  description: Production
+- url: https://sandbox.api.high-mobility.com
+  description: Sandbox
+security:
+- oauth2:
+  - vehicle:data
+tags:
+- name: Fleet Clearance
+  description: Manage fleet vehicle clearance status and onboarding.
+paths:
+  /v1/fleet/vehicles:
+    get:
+      operationId: listFleetVehicles
+      summary: List fleet vehicles
+      description: Lists vehicles registered to the calling fleet account along with their clearance status.
+      tags:
+      - Fleet Clearance
+      responses:
+        '200':
+          description: List of fleet vehicles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FleetVehicle'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: addFleetVehicle
+      summary: Register vehicle to fleet
+      description: Adds a vehicle to the fleet and initiates the clearance process for the configured OEM.
+      tags:
+      - Fleet Clearance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FleetVehicleRequest'
+      responses:
+        '201':
+          description: Vehicle registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FleetVehicle'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/fleet/vehicles/{vin}:
+    get:
+      operationId: getFleetVehicle
+      summary: Get fleet vehicle
+      description: Returns the clearance status and metadata for a single fleet vehicle.
+      tags:
+      - Fleet Clearance
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Fleet vehicle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FleetVehicle'
+        '404':
+          description: Not found
+    delete:
+      operationId: removeFleetVehicle
+      summary: Remove fleet vehicle
+      description: Removes a vehicle from the fleet and revokes clearance.
+      tags:
+      - Fleet Clearance
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Removed
+        '404':
+          description: Not found
+components:
+  schemas:
+    FleetVehicleRequest:
+      type: object
+      required:
+      - vin
+      - brand
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        license_plate:
+          type: string
+    FleetVehicle:
+      type: object
+      properties:
+        vin:
+          type: string
+        brand:
+          type: string
+        license_plate:
+          type: string
+        clearance_status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - revoked
+          - error
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+        authorizationCode:
+          authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+externalDocs:
+  description: High Mobility API Reference
+  url: https://docs.high-mobility.com/api-references/readme.md

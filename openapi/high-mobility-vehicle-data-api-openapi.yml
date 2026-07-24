@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: High Mobility Vehicle Authentication Vehicle Data API
+  description: The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.
+  version: '1.0'
+  contact:
+    name: High Mobility Developer Support
+    url: https://docs.high-mobility.com/
+servers:
+- url: https://api.high-mobility.com
+  description: Production
+- url: https://sandbox.api.high-mobility.com
+  description: Sandbox
+security:
+- oauth2:
+  - vehicle:data
+tags:
+- name: Vehicle Data
+  description: Retrieve real-time vehicle telemetry organized by capability category.
+paths:
+  /v1/vehicle-data/autoapi-13/{vin}:
+    get:
+      operationId: getVehicleData
+      summary: Get vehicle data by VIN
+      description: Retrieves the latest available connected vehicle data payload for a given VIN. Response covers all capabilities the vehicle and its clearance grant access to, such as doors, charging, diagnostics, climate, trips, and location.
+      tags:
+      - Vehicle Data
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        description: Vehicle Identification Number.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Vehicle data payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleData'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Insufficient scope or clearance
+        '404':
+          description: Vehicle not found
+        '429':
+          description: Too many requests
+components:
+  schemas:
+    VehicleLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+    VehicleData:
+      type: object
+      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
+      properties:
+        vin:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        doors:
+          $ref: '#/components/schemas/Doors'
+        charging:
+          $ref: '#/components/schemas/Charging'
+        diagnostics:
+          $ref: '#/components/schemas/Diagnostics'
+        vehicle_location:
+          $ref: '#/components/schemas/VehicleLocation'
+    Doors:
+      type: object
+      properties:
+        locks:
+          type: array
+          items:
+            type: object
+            properties:
+              location:
+                type: string
+                enum:
+                - front_left
+                - front_right
+                - rear_left
+                - rear_right
+              lock:
+                type: string
+                enum:
+                - locked
+                - unlocked
+              position:
+                type: string
+                enum:
+                - open
+                - closed
+    Charging:
+      type: object
+      properties:
+        battery_level:
+          type: integer
+        estimated_range:
+          type: integer
+        charging_state:
+          type: string
+          enum:
+          - disconnected
+          - plugged_in
+          - charging
+          - completed
+        charge_limit:
+          type: integer
+    Diagnostics:
+      type: object
+      properties:
+        mileage:
+          type: integer
+        speed:
+          type: integer
+        fuel_level:
+          type: integer
+        engine_rpm:
+          type: integer
+        engine_oil_temperature:
+          type: number
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+        authorizationCode:
+          authorizationUrl: https://owner-panel.high-mobility.com/oauth/new
+          tokenUrl: https://api.high-mobility.com/v1/access_token
+          scopes:
+            vehicle:data: Read connected vehicle data
+externalDocs:
+  description: High Mobility API Reference
+  url: https://docs.high-mobility.com/api-references/readme.md
