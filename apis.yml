@@ -5,7 +5,20 @@ description: >-
   vehicles. The platform provides access to car data such as location, fuel level, door locks, diagnostics, and other
   vehicle telemetry data.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/high-mobility.png
 tags:
   - Automotive
   - Connected Cars
@@ -16,28 +29,78 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: high-mobility:high-mobility-api
-    name: High Mobility Vehicle API
-    description: >-
-      The High Mobility Vehicle API provides access to real-time connected car data including vehicle telemetry,
-      diagnostics, location, fuel levels, door state, and other vehicle capabilities.
-    humanURL: https://high-mobility.com/developers/
-    baseURL: https://api.high-mobility.com
-    tags:
-      - Automotive
-      - Connected Cars
-      - Vehicle Data
-    properties:
-      - type: Documentation
-        url: https://docs.high-mobility.com/
-      - type: GettingStarted
-        url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
-      - type: Authentication
-        url: https://docs.high-mobility.com/docs/oauth-2.0.md
-      - type: OpenAPI
-        url: openapi/high-mobility-openapi.yml
-      - type: GitHubRepository
-        url: https://github.com/highmobility/open-api-specifications
+- aid: high-mobility:high-mobility-authentication-api
+  name: High Mobility Authentication API
+  description: OAuth 2.0 token issuance for the High Mobility platform.
+  humanURL: https://high-mobility.com/developers/
+  baseURL: https://api.high-mobility.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/high-mobility-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.high-mobility.com/
+  - type: GettingStarted
+    url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
+  - type: Authentication
+    url: https://docs.high-mobility.com/docs/oauth-2.0.md
+  - type: GitHubRepository
+    url: https://github.com/highmobility/open-api-specifications
+- aid: high-mobility:high-mobility-fleet-clearance-api
+  name: High Mobility Fleet Clearance API
+  description: Manage fleet vehicle clearance status and onboarding.
+  humanURL: https://high-mobility.com/developers/
+  baseURL: https://api.high-mobility.com
+  tags:
+  - Fleet Clearance
+  properties:
+  - type: OpenAPI
+    url: openapi/high-mobility-fleet-clearance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.high-mobility.com/
+  - type: GettingStarted
+    url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
+  - type: Authentication
+    url: https://docs.high-mobility.com/docs/oauth-2.0.md
+  - type: GitHubRepository
+    url: https://github.com/highmobility/open-api-specifications
+- aid: high-mobility:high-mobility-vehicle-data-api
+  name: High Mobility Vehicle Data API
+  description: Retrieve real-time vehicle telemetry organized by capability category.
+  humanURL: https://high-mobility.com/developers/
+  baseURL: https://api.high-mobility.com
+  tags:
+  - Vehicle Data
+  properties:
+  - type: OpenAPI
+    url: openapi/high-mobility-vehicle-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.high-mobility.com/
+  - type: GettingStarted
+    url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
+  - type: Authentication
+    url: https://docs.high-mobility.com/docs/oauth-2.0.md
+  - type: GitHubRepository
+    url: https://github.com/highmobility/open-api-specifications
+- aid: high-mobility:high-mobility-vehicle-eligibility-api
+  name: High Mobility Vehicle Eligibility API
+  description: Check brand and capability eligibility for a vehicle.
+  humanURL: https://high-mobility.com/developers/
+  baseURL: https://api.high-mobility.com
+  tags:
+  - Vehicle Eligibility
+  properties:
+  - type: OpenAPI
+    url: openapi/high-mobility-vehicle-eligibility-api-openapi.yml
+  - type: Documentation
+    url: https://docs.high-mobility.com/
+  - type: GettingStarted
+    url: https://docs.high-mobility.com/docs/getting-started/quickstart.md
+  - type: Authentication
+    url: https://docs.high-mobility.com/docs/oauth-2.0.md
+  - type: GitHubRepository
+    url: https://github.com/highmobility/open-api-specifications
 common:
   - type: AgenticAccess
     url: agentic-access/high-mobility-agentic-access.yml
