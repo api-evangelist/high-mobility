@@ -1,0 +1,20 @@
+{
+  "provider": "high-mobility",
+  "sources": [
+    "high-mobility-authentication-api-openapi.yml",
+    "high-mobility-fleet-clearance-api-openapi.yml",
+    "high-mobility-vehicle-data-api-openapi.yml",
+    "high-mobility-vehicle-eligibility-api-openapi.yml"
+  ],
+  "outputs": [
+    "high-mobility-authentication-api-openapi.yml",
+    "high-mobility-fleet-clearance-api-openapi.yml",
+    "high-mobility-vehicle-data-api-openapi.yml",
+    "high-mobility-vehicle-eligibility-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
