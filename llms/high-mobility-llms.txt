@@ -1,0 +1,124 @@
+# High Mobility Docs
+
+## Home
+
+- [Home](https://docs.high-mobility.com/readme.md): Welcome to your team’s developer platform
+
+## Documentation
+
+- [Welcome](https://docs.high-mobility.com/docs/readme.md)
+- [Quickstart](https://docs.high-mobility.com/docs/getting-started/quickstart.md)
+- [Fleet Clearance](https://docs.high-mobility.com/docs/getting-started/fleet-clearance.md): Manage vehicle data access by adding, approving, or revoking VINs with the Fleet Clearance API
+- [Activation Process](https://docs.high-mobility.com/docs/getting-started/fleet-clearance/activation-process.md): Understand the vehicle activation process, its possible delays, and the states from pending to approved or rejected
+- [OAuth 2.0](https://docs.high-mobility.com/docs/oauth-2.0.md): Authenticate your apps with OAuth 2.0 to generate short-lived access tokens for vehicle and fleet APIs
+- [Vehicle Data](https://docs.high-mobility.com/docs/vehicle-data.md): Review of different Vehicle Data APIs
+- [REST API](https://docs.high-mobility.com/docs/vehicle-data/rest-api.md): Learn how to use the Vehicle Data API to retrieve car data
+- [MQTT V1](https://docs.high-mobility.com/docs/vehicle-data/mqtt-v1.md): Use the MQTT Auto API broker to subscribe and stream live vehicle data updates over MQTT
+- [MQTT V2](https://docs.high-mobility.com/docs/vehicle-data/mqtt-v2.md): Use the Enterprise MQTT broker to subscribe and stream live vehicle data updates over MQTT
+- [AWS Kinesis](https://docs.high-mobility.com/docs/vehicle-data/aws-kinesis.md): Stream real-time vehicle data into your own Amazon Kinesis pipeline
+- [AWS S3](https://docs.high-mobility.com/docs/vehicle-data/aws-s3.md): Push vehicle data updates directly into your AWS S3 buckets for scalable storage and analysis.
+- [Azure Blob Storage](https://docs.high-mobility.com/docs/vehicle-data/azure-blob-storage.md): Push vehicle data updates directly into your Azure Blob for scalable storage and analysis.
+- [Static Data API](https://docs.high-mobility.com/docs/vehicle-data/static-data-api.md): Access Vehicle Static Data
+- [Vehicle Eligibility](https://docs.high-mobility.com/docs/vehicle-eligibility.md): Check if a vehicle is eligible for data sharing using its brand and VIN
+- [Webhooks](https://docs.high-mobility.com/docs/webhooks.md): Use webhooks to get notified of vehicle clearance events without polling the API
+- [Console](https://docs.high-mobility.com/docs/platform/console.md)
+- [Getting Verified for Production](https://docs.high-mobility.com/docs/platform/console/getting-verified-for-production.md)
+- [Sandbox](https://docs.high-mobility.com/docs/platform/console/sandbox.md)
+
+## OEM Guides
+
+- [OEM Guides](https://docs.high-mobility.com/oem-guides/oem-guides.md)
+- [BMW & MINI](https://docs.high-mobility.com/oem-guides/bmw-and-mini.md): Get details on supported BMW/MINI models, regions, subscriptions, and available data points
+- [Ford](https://docs.high-mobility.com/oem-guides/ford.md): Get details on supported Ford models, regions, subscriptions, and available data points
+- [Guide](https://docs.high-mobility.com/oem-guides/ford/guide.md): Get details on supported Ford models, regions, subscriptions, and available data points
+- [Onboarding](https://docs.high-mobility.com/oem-guides/ford/onboarding.md)
+- [Clearance Lifecycle](https://docs.high-mobility.com/oem-guides/ford/clearance-lifecycle.md): Lifecycle of clearance for Ford
+- [Hyundai](https://docs.high-mobility.com/oem-guides/hyundai.md): Get details on supported Hyundai models, regions, subscriptions, and available data points
+- [Clearance Lifecycle](https://docs.high-mobility.com/oem-guides/hyundai/clearance-lifecycle.md): Lifecycle of clearance for Hyundai brand
+- [Kia](https://docs.high-mobility.com/oem-guides/kia.md): Get details on supported Kia models, regions, subscriptions, and available data points
+- [Nissan](https://docs.high-mobility.com/oem-guides/nissan.md): Get details on supported Nissan models, regions, subscriptions, and available data points
+- [Mercedes-Benz](https://docs.high-mobility.com/oem-guides/mercedes-benz.md): Get details on supported Mercedes-Benz models, regions, subscriptions, and available data points
+- [Polestar](https://docs.high-mobility.com/oem-guides/polestar.md): Get details on supported Polestar models, regions, subscriptions, and available data points
+- [Porsche](https://docs.high-mobility.com/oem-guides/porsche.md): Get details on supported Porsche models, regions, subscriptions, and available data points
+- [Renault & Dacia](https://docs.high-mobility.com/oem-guides/renault-and-dacia.md): Get details on supported Renault/Dacia models, regions, subscriptions, and available data points
+- [Stellantis](https://docs.high-mobility.com/oem-guides/stellantis.md): Get details on supported Stellantis brands and models, regions, subscriptions, and available data points
+- [Clearance Lifecycle](https://docs.high-mobility.com/oem-guides/stellantis/clearance-lifecycle.md): Lifecycle of clearance for Stellantis brands
+- [Tesla](https://docs.high-mobility.com/oem-guides/tesla.md): Get details on supported Tesla models, regions, subscriptions, and available data points
+- [Toyota & Lexus](https://docs.high-mobility.com/oem-guides/toyota-and-lexus.md): Get details on supported Toyota/Lexus models, regions, subscriptions, and available data points
+- [Volkswagen Group](https://docs.high-mobility.com/oem-guides/volkswagen-group.md): Get details on supported VW brands, models, regions, subscriptions, and available data points
+- [Guide](https://docs.high-mobility.com/oem-guides/volkswagen-group/guide.md): Get details on supported Volkswagen Group models, regions and available data points
+- [Onboarding](https://docs.high-mobility.com/oem-guides/volkswagen-group/onboarding.md)
+- [Clearance Lifecycle](https://docs.high-mobility.com/oem-guides/volkswagen-group/clearance-lifecycle.md): Lifecycle of clearance for VW Group brands
+- [Volvo Cars](https://docs.high-mobility.com/oem-guides/volvo-cars.md): Get details on supported Volvo Cars models, regions, subscriptions, and available data points
+
+## API References
+
+- [Developer Platform API](https://docs.high-mobility.com/api-references/readme.md)
+- [OAuth2](https://docs.high-mobility.com/api-references/auth/oauth2.md)
+- [Streaming Schema V2](https://docs.high-mobility.com/api-references/data/streaming-schema-v2.md)
+- [Adas](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/adas.md): Example data points for adas
+- [Charging](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/charging.md): Example data points for charging
+- [Climate](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/climate.md): Example data points for climate
+- [Crash](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/crash.md): Example data points for crash
+- [Dashboard Lights](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/dashboard-lights.md): Example data points for dashboard\_lights
+- [Diagnostics](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/diagnostics.md): Example data points for diagnostics
+- [Doors](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/doors.md): Example data points for doors
+- [Engine](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/engine.md): Example data points for engine
+- [Hood](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/hood.md): Example data points for hood
+- [Honk horn flash lights](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/honk-horn-flash-lights.md): Example data points for honk\_horn\_flash\_lights
+- [Ignition](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/ignition.md): Example data points for ignition
+- [Maintenance](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/maintenance.md): Example data points for maintenance
+- [Parking brake](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/parking-brake.md): Example data points for parking\_brake
+- [Theft alarm](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/theft-alarm.md): Example data points for theft\_alarm
+- [Trips](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/trips.md): Example data points for trips
+- [Usage](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/usage.md): Example data points for usage
+- [Race](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/race.md): Example data points for race
+- [Rooftop control](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/rooftop-control.md): Example data points for rooftop\_control
+- [Vehicle Location](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/vehicle-location.md): Example data points for vehicle\_location
+- [Windows](https://docs.high-mobility.com/api-references/data/streaming-schema-v2/windows.md): Example data points for windows
+- [Vehicle Data](https://docs.high-mobility.com/api-references/data/vehicle-data.md)
+- [Data API](https://docs.high-mobility.com/api-references/data/vehicle-data/data-api.md)
+- [Models](https://docs.high-mobility.com/api-references/data/vehicle-data/models.md)
+- [Vehicle Static Data](https://docs.high-mobility.com/api-references/data/vehicle-static-data.md)
+- [Static Data API](https://docs.high-mobility.com/api-references/data/vehicle-static-data/static-data-api.md)
+- [Models](https://docs.high-mobility.com/api-references/data/vehicle-static-data/models.md)
+- [Eligibility](https://docs.high-mobility.com/api-references/fleet-management/eligibility.md)
+- [Fleet Clearance](https://docs.high-mobility.com/api-references/fleet-management/fleet-clearance.md)
+
+## Changelog
+
+- [Changelog](https://docs.high-mobility.com/changelog/readme.md): New updates and improvements
+- [July 2026](https://docs.high-mobility.com/changelog/readme/july-2026.md)
+- [June 2026](https://docs.high-mobility.com/changelog/readme/june-2026.md)
+- [April 2026](https://docs.high-mobility.com/changelog/readme/april-2026.md)
+- [March 2026](https://docs.high-mobility.com/changelog/readme/march-2026.md)
+- [February 2026](https://docs.high-mobility.com/changelog/readme/february-2026.md)
+- [January 2026](https://docs.high-mobility.com/changelog/readme/january-2026.md)
+- [November 2025](https://docs.high-mobility.com/changelog/readme/november-2025.md): High Mobility platform updates on November 2025
+- [October 2025](https://docs.high-mobility.com/changelog/readme/october-2025.md): High Mobility platform updates on October 2025
+- [September 2025](https://docs.high-mobility.com/changelog/readme/september-2025.md): High Mobility platform updates on September 2025
+- [August 2025](https://docs.high-mobility.com/changelog/readme/august-2025.md): High Mobility platform updates on August 2025
+- [July 2025](https://docs.high-mobility.com/changelog/readme/july-2025.md): High Mobility platform updates on July 2025
+- [WIP](https://docs.high-mobility.com/changelog/readme/wip.md)
+- [Notes](https://docs.high-mobility.com/changelog/readme/notes.md)
+- [Migrate from MQTT V1 to MQTT V2 (Enterprise)](https://docs.high-mobility.com/changelog/readme/notes/migrate-from-mqtt-v1-to-mqtt-v2-enterprise.md): A migration guide for High Mobility’s new MQTT V2 Enterprise broker, outlining endpoint/topic/schema/auth changes and a safe parallel-run rollout to switch from MQTT V1 without data loss.
+
+## Help Center
+
+- [Help Center](https://docs.high-mobility.com/help-center/readme.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.high-mobility.com/readme.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

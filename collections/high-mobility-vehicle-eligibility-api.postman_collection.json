@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "80fefcfd-d427-4a4f-8c7a-87dbfc39c477",
+      "name": "Vehicle Eligibility",
+      "description": {
+        "content": "Check brand and capability eligibility for a vehicle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "049a3d89-98a0-4b3f-8874-4c9fcf9e3de8",
+          "name": "Get vehicle eligibility",
+          "request": {
+            "name": "Get vehicle eligibility",
+            "description": {
+              "content": "Returns brand and capability eligibility metadata for the requested vehicle, including supported data points and required clearance flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "eligibility",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vin",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8337ec8-0c88-44e0-950d-51b2cdcae694",
+              "name": "Eligibility result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "eligibility",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"string\",\n  \"brand\": \"string\",\n  \"eligible\": false,\n  \"capabilities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"clearance_required\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b45f497-4d4a-4771-b316-2f3cae3a3ced",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "eligibility",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b88b2941-0e3b-423b-94a8-fcb1bc819f3b",
+              "name": "Vehicle not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "eligibility",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.high-mobility.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vehicle:data"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.high-mobility.com/v1/access_token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "35f040e8-0647-43b0-ba9e-9df82de2bd5a",
+    "name": "High Mobility Vehicle Authentication Vehicle Eligibility API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.\n\nContact Support:\n Name: High Mobility Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

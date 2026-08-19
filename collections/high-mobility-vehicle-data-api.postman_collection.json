@@ -1,0 +1,349 @@
+{
+  "item": [
+    {
+      "id": "911a86cd-8ac8-4dae-b551-8ddd05e86ca7",
+      "name": "Vehicle Data",
+      "description": {
+        "content": "Retrieve real-time vehicle telemetry organized by capability category.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "533a71fe-4f91-47f0-90f2-cc75e7bc8189",
+          "name": "Get vehicle data by VIN",
+          "request": {
+            "name": "Get vehicle data by VIN",
+            "description": {
+              "content": "Retrieves the latest available connected vehicle data payload for a given VIN. Response covers all capabilities the vehicle and its clearance grant access to, such as doors, charging, diagnostics, climate, trips, and location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vehicle-data",
+                "autoapi-13",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vin",
+                  "description": "(Required) Vehicle Identification Number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c6fb0ee-72c2-4268-9714-e9c3ce4f3198",
+              "name": "Vehicle data payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicle-data",
+                    "autoapi-13",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) Vehicle Identification Number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"string\",\n  \"timestamp\": \"2009-10-17T11:07:02.822Z\",\n  \"doors\": {\n    \"locks\": [\n      {\n        \"location\": \"front_left\",\n        \"lock\": \"locked\",\n        \"position\": \"open\"\n      },\n      {\n        \"location\": \"front_right\",\n        \"lock\": \"unlocked\",\n        \"position\": \"open\"\n      }\n    ]\n  },\n  \"charging\": {\n    \"battery_level\": 8756,\n    \"estimated_range\": 5824,\n    \"charging_state\": \"plugged_in\",\n    \"charge_limit\": 6750\n  },\n  \"diagnostics\": {\n    \"mileage\": 3169,\n    \"speed\": 5834,\n    \"fuel_level\": 9383,\n    \"engine_rpm\": 1354,\n    \"engine_oil_temperature\": 1737.0448814476447\n  },\n  \"vehicle_location\": {\n    \"latitude\": 1973.813810283952,\n    \"longitude\": 298.9176119666048\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6778283-e53d-4d68-b568-c6bc092cefd0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicle-data",
+                    "autoapi-13",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) Vehicle Identification Number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74ea2df0-fb77-45dd-b363-dc7f352ac892",
+              "name": "Insufficient scope or clearance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicle-data",
+                    "autoapi-13",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) Vehicle Identification Number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca7b1ee0-0d25-4be1-adfe-92d02e038cc1",
+              "name": "Vehicle not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicle-data",
+                    "autoapi-13",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) Vehicle Identification Number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35a25d81-ac06-4f7a-a901-cee3b2479c6f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vehicle-data",
+                    "autoapi-13",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) Vehicle Identification Number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.high-mobility.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "vehicle:data"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.high-mobility.com/v1/access_token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ae56463c-0a13-4797-9e03-2352331f4264",
+    "name": "High Mobility Vehicle Authentication Vehicle Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.\n\nContact Support:\n Name: High Mobility Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

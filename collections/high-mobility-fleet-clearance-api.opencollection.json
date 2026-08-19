@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "High Mobility Vehicle Authentication Fleet Clearance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.high-mobility.com/v1/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet Clearance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List fleet vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles"
+          },
+          "docs": "Lists vehicles registered to the calling fleet account along with their clearance status."
+        },
+        {
+          "info": {
+            "name": "Register vehicle to fleet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a vehicle to the fleet and initiates the clearance process for the configured OEM."
+        },
+        {
+          "info": {
+            "name": "Get fleet vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the clearance status and metadata for a single fleet vehicle."
+        },
+        {
+          "info": {
+            "name": "Remove fleet vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.high-mobility.com/v1/fleet/vehicles/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a vehicle from the fleet and revokes clearance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

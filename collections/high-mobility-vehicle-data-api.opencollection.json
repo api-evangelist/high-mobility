@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "High Mobility Vehicle Authentication Vehicle Data API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.high-mobility.com/v1/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicle Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vehicle data by VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.high-mobility.com/v1/vehicle-data/autoapi-13/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path",
+                "description": "Vehicle Identification Number."
+              }
+            ]
+          },
+          "docs": "Retrieves the latest available connected vehicle data payload for a given VIN. Response covers all capabilities the vehicle and its clearance grant access to, such as doors, charging, diagnostics, climate, trips, and location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
