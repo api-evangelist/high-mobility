@@ -1,0 +1,34 @@
+slug: high-mobility
+provider: High Mobility
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Automotive & Mobility
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Vehicle Data
+  spec_file: high-mobility-vehicle-data-api-openapi.yml
+  capability_id: BC-3460.40
+  capability_id_l1: BC-3460
+  capability_name: Vehicle Data Platform Operations
+  confidence: 0.85
+  evidence: GET /v1/vehicle-data/autoapi-13/{vin} 'Get vehicle data by VIN'; schemas Charging, Doors,
+    VehicleLocation, Diagnostics
+  reason: Serves real-time connected vehicle telemetry to third parties — vehicle data platform ingestion
+    and sharing.
+- tag: Fleet Clearance
+  spec_file: high-mobility-fleet-clearance-api-openapi.yml
+  capability_id: BC-3460.40
+  capability_id_l1: BC-3460
+  capability_name: Vehicle Data Platform Operations
+  confidence: 0.7
+  evidence: POST /v1/fleet/vehicles addFleetVehicle 'Register vehicle to fleet'; schemas FleetVehicle
+  reason: Registering/removing VINs so a fleet's vehicles are cleared for connected-data access is vehicle
+    data platform operations (consent/access management) on a connected-car data platform.

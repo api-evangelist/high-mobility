@@ -115,6 +115,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/highmobility/open-api-specifications
 common:
+  - type: CapabilityMap
+    url: capabilities/high-mobility-capability-edges.yml
+    name: High Mobility Business Capability Map
   - type: IssueTracker
     url: https://github.com/highmobility/open-api-specifications/issues
   - type: AgenticAccess
