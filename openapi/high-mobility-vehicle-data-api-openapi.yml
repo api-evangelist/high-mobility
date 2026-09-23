@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: High Mobility Vehicle Authentication Vehicle Data API
+  title: High Mobility Vehicle Vehicle Data API
   description: The High Mobility Vehicle API provides standardized access to connected car data across more than 500 models from major automotive OEMs. Endpoints return real-time vehicle telemetry covering location, doors, charging, diagnostics, climate, trips, and other capabilities. Authentication is handled with OAuth 2.0 against the High Mobility platform.
   version: '1.0'
   contact:
@@ -49,32 +49,6 @@ paths:
           description: Too many requests
 components:
   schemas:
-    VehicleLocation:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: float
-        longitude:
-          type: number
-          format: float
-    VehicleData:
-      type: object
-      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
-      properties:
-        vin:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        doors:
-          $ref: '#/components/schemas/Doors'
-        charging:
-          $ref: '#/components/schemas/Charging'
-        diagnostics:
-          $ref: '#/components/schemas/Diagnostics'
-        vehicle_location:
-          $ref: '#/components/schemas/VehicleLocation'
     Doors:
       type: object
       properties:
@@ -100,6 +74,23 @@ components:
                 enum:
                 - open
                 - closed
+    VehicleData:
+      type: object
+      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
+      properties:
+        vin:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        doors:
+          $ref: '#/components/schemas/Doors'
+        charging:
+          $ref: '#/components/schemas/Charging'
+        diagnostics:
+          $ref: '#/components/schemas/Diagnostics'
+        vehicle_location:
+          $ref: '#/components/schemas/VehicleLocation'
     Charging:
       type: object
       properties:
@@ -116,6 +107,15 @@ components:
           - completed
         charge_limit:
           type: integer
+    VehicleLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
     Diagnostics:
       type: object
       properties:
