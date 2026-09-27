@@ -49,6 +49,61 @@ paths:
           description: Too many requests
 components:
   schemas:
+    VehicleLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+    Charging:
+      type: object
+      properties:
+        battery_level:
+          type: integer
+        estimated_range:
+          type: integer
+        charging_state:
+          type: string
+          enum:
+          - disconnected
+          - plugged_in
+          - charging
+          - completed
+        charge_limit:
+          type: integer
+    Diagnostics:
+      type: object
+      properties:
+        mileage:
+          type: integer
+        speed:
+          type: integer
+        fuel_level:
+          type: integer
+        engine_rpm:
+          type: integer
+        engine_oil_temperature:
+          type: number
+    VehicleData:
+      type: object
+      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
+      properties:
+        vin:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        doors:
+          $ref: '#/components/schemas/Doors'
+        charging:
+          $ref: '#/components/schemas/Charging'
+        diagnostics:
+          $ref: '#/components/schemas/Diagnostics'
+        vehicle_location:
+          $ref: '#/components/schemas/VehicleLocation'
     Doors:
       type: object
       properties:
@@ -74,61 +129,6 @@ components:
                 enum:
                 - open
                 - closed
-    VehicleData:
-      type: object
-      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
-      properties:
-        vin:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        doors:
-          $ref: '#/components/schemas/Doors'
-        charging:
-          $ref: '#/components/schemas/Charging'
-        diagnostics:
-          $ref: '#/components/schemas/Diagnostics'
-        vehicle_location:
-          $ref: '#/components/schemas/VehicleLocation'
-    Charging:
-      type: object
-      properties:
-        battery_level:
-          type: integer
-        estimated_range:
-          type: integer
-        charging_state:
-          type: string
-          enum:
-          - disconnected
-          - plugged_in
-          - charging
-          - completed
-        charge_limit:
-          type: integer
-    VehicleLocation:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: float
-        longitude:
-          type: number
-          format: float
-    Diagnostics:
-      type: object
-      properties:
-        mileage:
-          type: integer
-        speed:
-          type: integer
-        fuel_level:
-          type: integer
-        engine_rpm:
-          type: integer
-        engine_oil_temperature:
-          type: number
   securitySchemes:
     oauth2:
       type: oauth2

@@ -6,17 +6,20 @@ description: >-
   vehicle telemetry data.
 type: Index
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - highmobility/open-api-specifications
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -37,11 +40,13 @@ tags:
   - Connected Car
   - IoT
   - Vehicle Data
+  - Mobility
 tags_raw:
   - Automotive
   - Connected Cars
   - IoT
   - Vehicle Data
+  - Mobility
 url: https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml
 created: '2026-03-16'
 modified: '2026-05-19'
