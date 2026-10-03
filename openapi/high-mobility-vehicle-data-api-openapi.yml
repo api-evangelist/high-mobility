@@ -49,15 +49,6 @@ paths:
           description: Too many requests
 components:
   schemas:
-    VehicleLocation:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: float
-        longitude:
-          type: number
-          format: float
     Charging:
       type: object
       properties:
@@ -74,6 +65,31 @@ components:
           - completed
         charge_limit:
           type: integer
+    Doors:
+      type: object
+      properties:
+        locks:
+          type: array
+          items:
+            type: object
+            properties:
+              location:
+                type: string
+                enum:
+                - front_left
+                - front_right
+                - rear_left
+                - rear_right
+              lock:
+                type: string
+                enum:
+                - locked
+                - unlocked
+              position:
+                type: string
+                enum:
+                - open
+                - closed
     Diagnostics:
       type: object
       properties:
@@ -104,31 +120,15 @@ components:
           $ref: '#/components/schemas/Diagnostics'
         vehicle_location:
           $ref: '#/components/schemas/VehicleLocation'
-    Doors:
+    VehicleLocation:
       type: object
       properties:
-        locks:
-          type: array
-          items:
-            type: object
-            properties:
-              location:
-                type: string
-                enum:
-                - front_left
-                - front_right
-                - rear_left
-                - rear_right
-              lock:
-                type: string
-                enum:
-                - locked
-                - unlocked
-              position:
-                type: string
-                enum:
-                - open
-                - closed
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
   securitySchemes:
     oauth2:
       type: oauth2
