@@ -127,6 +127,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/highmobility/open-api-specifications
 common:
+  - type: Plans
+    url: plans/high-mobility-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/high-mobility-rate-limits.yml
+  - type: FinOps
+    url: finops/high-mobility-finops.yml
   - type: CapabilityMap
     url: capabilities/high-mobility-capability-edges.yml
     name: High Mobility Business Capability Map
