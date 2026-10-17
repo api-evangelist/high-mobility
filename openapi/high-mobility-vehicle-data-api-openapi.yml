@@ -49,6 +49,23 @@ paths:
           description: Too many requests
 components:
   schemas:
+    VehicleData:
+      type: object
+      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
+      properties:
+        vin:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        doors:
+          $ref: '#/components/schemas/Doors'
+        charging:
+          $ref: '#/components/schemas/Charging'
+        diagnostics:
+          $ref: '#/components/schemas/Diagnostics'
+        vehicle_location:
+          $ref: '#/components/schemas/VehicleLocation'
     Doors:
       type: object
       properties:
@@ -74,32 +91,6 @@ components:
                 enum:
                 - open
                 - closed
-    VehicleLocation:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: float
-        longitude:
-          type: number
-          format: float
-    VehicleData:
-      type: object
-      description: Aggregated vehicle data response. Includes any capability sections the vehicle and clearance permit; example fields shown.
-      properties:
-        vin:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        doors:
-          $ref: '#/components/schemas/Doors'
-        charging:
-          $ref: '#/components/schemas/Charging'
-        diagnostics:
-          $ref: '#/components/schemas/Diagnostics'
-        vehicle_location:
-          $ref: '#/components/schemas/VehicleLocation'
     Diagnostics:
       type: object
       properties:
@@ -113,6 +104,15 @@ components:
           type: integer
         engine_oil_temperature:
           type: number
+    VehicleLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
     Charging:
       type: object
       properties:
