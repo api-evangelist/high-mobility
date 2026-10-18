@@ -37,7 +37,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/high-mobility.png
 tags:
   - Automotive
-  - Connected Car
+  - Connected Vehicles
   - IoT
   - Vehicle Data
   - Mobility
@@ -49,6 +49,7 @@ tags_raw:
   - Vehicle Data
   - Mobility
   - Telematics
+  - Connected Car
 url: https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml
 created: '2026-03-16'
 modified: '2026-05-19'
