@@ -1,4 +1,4 @@
-# High Mobility (high-mobility)
+# High Mobility
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,60 +66,128 @@
 
 High Mobility provides a connected car API platform that enables developers to build apps using real-time data from vehicles. The platform provides access to car data such as location, fuel level, door locks, diagnostics, and other vehicle telemetry data.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/high-mobility/refs/heads/main/apis.yml)
+**Areas:** Automotive · Connected Vehicles · IoT · Vehicle Data · Mobility · Telematics
 
-## Scope
+## High Mobility on APIs.io
 
-- **Type:** Index
+Everything profiled for High Mobility is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/high-mobility/](https://apis.io/providers/high-mobility/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Automotive
-- Connected Cars
-- IoT
-- Vehicle Data
+- [High Mobility Authentication API](https://apis.io/apis/high-mobility/high-mobility-authentication-api/) — OAuth 2.0 token issuance for the High Mobility platform.
+- [High Mobility Fleet Clearance API](https://apis.io/apis/high-mobility/high-mobility-fleet-clearance-api/) — Manage fleet vehicle clearance status and onboarding.
+- [High Mobility Vehicle Data API](https://apis.io/apis/high-mobility/high-mobility-vehicle-data-api/) — Retrieve real-time vehicle telemetry organized by capability category.
+- [High Mobility Vehicle Eligibility API](https://apis.io/apis/high-mobility/high-mobility-vehicle-eligibility-api/) — Check brand and capability eligibility for a vehicle.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### High Mobility Vehicle API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The High Mobility Vehicle API provides access to real-time connected car data including vehicle telemetry, diagnostics, location, fuel levels, door state, and other vehicle capabilities.
+- [High Mobility Agentic Access](https://apis.io/agentic-access/high-mobility/high-mobility-agentic-access/)
 
-- **Human URL:** [https://high-mobility.com/developers/](https://high-mobility.com/developers/)
-- **Base URL:** `https://api.high-mobility.com`
+#### Collections (5)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Automotive
-- Connected Cars
-- Vehicle Data
+- [High Mobility Vehicle API](https://apis.io/collections/high-mobility/open-high-mobility/)
+- [High Mobility Vehicle Authentication API](https://apis.io/collections/high-mobility/open-high-mobility-authentication-api/)
+- [High Mobility Vehicle Authentication Fleet Clearance API](https://apis.io/collections/high-mobility/open-high-mobility-fleet-clearance-api/)
+- [High Mobility Vehicle Authentication Vehicle Data API](https://apis.io/collections/high-mobility/open-high-mobility-vehicle-data-api/)
+- [High Mobility Vehicle Authentication Vehicle Eligibility API](https://apis.io/collections/high-mobility/open-high-mobility-vehicle-eligibility-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://docs.high-mobility.com/)
-- [Getting Started](https://docs.high-mobility.com/docs/getting-started/quickstart.md)
-- [Authentication](https://docs.high-mobility.com/docs/oauth-2.0.md)
-- [OpenAPI](openapi/high-mobility-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/high-mobility.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/high-mobility.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub Repository](https://github.com/highmobility/open-api-specifications)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [High Mobility Authentication](https://apis.io/security/high-mobility/high-mobility-authentication/)
+- [High Mobility Domain Security](https://apis.io/security/high-mobility/high-mobility-domain-security/)
 
-- [LinkedIn](https://www.linkedin.com/company/high-mobility)
-- [Portal](https://high-mobility.com/developers/)
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [High Mobility Scopes](https://apis.io/scopes/high-mobility/high-mobility-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [High Mobility Plans Pricing](https://apis.io/plans/high-mobility/high-mobility-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [High Mobility Rate Limits](https://apis.io/rate-limits/high-mobility/high-mobility-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [High Mobility Finops](https://apis.io/finops/high-mobility/high-mobility-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://high-mobility.com/)
 - [Documentation](https://high-mobility.com/learn/documentation/)
-- [Sign Up](https://high-mobility.com/developers/)
-- [GitHub Organization](https://github.com/highmobility)
-- [L L Ms Txt](https://docs.high-mobility.com/llms.txt)
+- [Blog](https://www.high-mobility.com/blog)
+- [GitHub](https://github.com/highmobility)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 51.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 21.1 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/high-mobility/](https://apis.io/providers/high-mobility/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for High Mobility: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/high-mobility/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
